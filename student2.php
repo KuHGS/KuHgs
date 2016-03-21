@@ -71,11 +71,11 @@ if ($num_rows > 0) { // There Exist Data Before
 
 }
 else { // No Data Before Create New
-  	$sql =mysqli_query($con, "INSERT INTO HGS_Application VALUES ('$id', '$_POST[brand]','$_POST[model]','$_POST[color]','$_POST[plate]' , null, null) ");
+  	$sql =mysqli_query($con, "INSERT INTO HGS_Application VALUES ('$id', '$_POST[brand]','$_POST[model]','$_POST[color]','$_POST[plate]' ,null ,null ,null ,null ,null ,null ,null) ");
 }
    
 echo " added succesfully";
-echo("<meta http-equiv='refresh' content='1'>");
+echo("<meta http-equiv='refresh' content='1'>"); // Refresh Page
 
 }
 ?>
