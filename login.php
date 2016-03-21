@@ -68,8 +68,8 @@ if(!empty($_POST['uname']) && !empty($_POST['passw'])) {
 	else {
 	
 	
-	$con2 = mysql_connect("localhost","root","") or die(mysql_error());
-    mysql_select_db("HGS_Database", $con2)or die("cannot select DB");
+	$con2 = mysql_connect("localhost","hgs-project","w28mkH9H") or die(mysql_error());
+    mysql_select_db("hgs_project", $con2)or die("cannot select DB");
     
 	$query2=mysql_query("SELECT * FROM Security_Staff WHERE UserName='$user' AND Password='$pass'");
 	$numrows2=mysql_num_rows($query2);
@@ -86,6 +86,7 @@ if(!empty($_POST['uname']) && !empty($_POST['passw'])) {
 	{
 	session_start();
 	$_SESSION['sess_user']=$user;
+   
 	
 
 	/* Redirect browser */
