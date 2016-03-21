@@ -1,9 +1,25 @@
 <?php 
 session_start();
 if(!isset($_SESSION["sess_username"])){
-	header("location:index.php");
+	header("location:login.php");
 	
-} 
+}
+
+
+	$dbusername = $_SESSION['sess_username'];
+
+	$con = mysqli_connect("localhost","hgs-project","w28mkH9H","hgs_project") or die(mysqli_error());
+	$query = mysqli_query($con,"SELECT * FROM Students WHERE UserName='$dbusername'");
+	
+	$row=mysqli_fetch_assoc($query);
+	
+	$dbName=$row['StudentName'];
+	$dbSurname=$row['StudentSurname'];
+	$dbStdID = $row['School_ID'];
+	$dbStdEmail = $row['email'];
+	$dbPhoneNo = $row['PhoneNo'];
+	
+ 
 ?>
 
 <!doctype html>
@@ -14,29 +30,35 @@ if(!isset($_SESSION["sess_username"])){
 <body>
 
 <h1>Welcome, <?=$_SESSION['sess_username'];?>. </h1>
-
+<p align="right" ><a href="logout.php">Logout</a></p>
 	
 <h2> <i>1</i> 2 3 4</h2>
 
 <form action="" method="post">
 <p>Name:</p> 
-<input placeholder="Name" type="text" name="name"  size="15" maxlength="150" />
+<input placeholder="<?=$dbName?>" type="text" name="name"  size="25" maxlength="150" />
 <p>Surname:</p>
-<input placeholder="Surname" type="text" name="surname" size="15" maxlength="150" />
+<input placeholder="<?=$dbSurname?>" type="text" name="surname" size="25" maxlength="255" />
 <p>ID:</p>
-<input placeholder="School Number" type="text" name="id" size="15" maxlength="150" />
+<input placeholder="<?=$dbStdID?>" type="text" name="id" size="25" maxlength="255" />
 <p>Email:</p>
-<input placeholder="<?=$_SESSION['sess_mail']?>" type="text" name="email"  size="15" maxlength="15" disabled/>
+<input placeholder="<?=$dbStdEmail?>" type="text" name="email"  size="25" maxlength="255" disabled/>
 <p>Phone No:</p> 
-<input placeholder="Phone Number" type="text" name="phoneno"  size="15" maxlength="9" />
+<input placeholder="<?=$dbPhoneNo?>" type="text" name="phoneno"  size="25" maxlength="11" />
 
 <input type="submit" name="submit" value="submit" />
 </form>
 
 <a href="student2.php">Next Page: Car Information Page</a>
 
-
 <?php
+
+session_start();
+$dbusername = $_SESSION['sess_username'];
+
+$_SESSION['sess_username']= $dbusername;
+
+
 if(isset($_POST["submit"])){
 $con = mysqli_connect("localhost","hgs-project","w28mkH9H","hgs_project") or die(mysqli_error());
 
@@ -63,10 +85,10 @@ if(!empty($_POST[phoneno]))
 }
 
 
-
-
 echo " added succesfully";
+echo("<meta http-equiv='refresh' content='1'>");
 }
+
 ?>
 
 </body>
