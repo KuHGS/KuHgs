@@ -7,8 +7,17 @@ if(!isset($_SESSION["sess_username"])){
 
 
 	$dbusername = $_SESSION['sess_username'];
-
+	$id = $_SESSION['sess_systemid'];
+	 
 	$con = mysqli_connect("localhost","hgs-project","w28mkH9H","hgs_project") or die(mysqli_error());
+	
+	//Start of the application lock
+	$result = mysqli_query($con,"SELECT * FROM HGS_Application WHERE Sys_ID='$id'");
+	$row2=mysqli_fetch_assoc($result);
+	$DBAPPLICATIONSTATUS = $row2['ApplicationStatus'];
+	if ($DBAPPLICATIONSTATUS == 1) header("location:student4.php");
+	//End of the application lock
+
 	$query = mysqli_query($con,"SELECT * FROM Students WHERE UserName='$dbusername'");
 	
 	$row=mysqli_fetch_assoc($query);

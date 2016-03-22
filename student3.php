@@ -12,13 +12,29 @@ if(!isset($_SESSION["sess_username"])){
 	$id = $_SESSION['sess_systemid'];
 	
 	$con = mysqli_connect("localhost","hgs-project","w28mkH9H","hgs_project") or die(mysqli_error());
+	
+	//Start of the application lock
 	$result = mysqli_query($con,"SELECT * FROM HGS_Application WHERE Sys_ID='$id'");
-		
 	$row=mysqli_fetch_assoc($result);
+	$DBAPPLICATIONSTATUS = $row['ApplicationStatus'];
+	if ($DBAPPLICATIONSTATUS == 1) header("location:student4.php");
+	//End of the application lock
 	
-	$dbDriversLicenseFront = $row['Drivers_License_Front'];
 	
+	$dbdriverlicenseFront = $row['Drivers_License_Front'];
+	$dbdriverlicenseBack = $row['Drivers_License_Back'];
+	$dbcarRegistration1 = $row['Car_Registration_P1'];
+	$dbcarRegistration2 = $row['Car_Registration_P2'];	
+	$dbstdIDCardFront = $row['std_ID_Card_Front'];
+	$dbstdIDCardBack = $row['std_ID_Card_Back'];	
+	$dbpaymnetDocument = $row['Payment_Document'];
 	
+	function isEmpty($variable) {
+	if (strlen($variable) == 0)
+	return true;
+	else 
+	return false;
+	}
  
 ?>
 
@@ -85,7 +101,8 @@ if ($num_rows > 0) { // There Exist Data Before
 
 	//Drivers License Front
 	$extension = strtolower(getExtension(stripslashes($_FILES['driverLicenseFront']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Drivers License Front \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbdriverlicenseFront) ) $alertString .= 'Unsupported File is Choosen for Drivers License Front \n'; }
  	else {
  	
  		$size=filesize($_FILES['driverLicenseFront']['tmp_name']);
@@ -102,7 +119,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Drivers License Back
 	$extension = strtolower(getExtension(stripslashes($_FILES['driverLicenseBack']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Drivers License Back \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbdriverlicenseBack) ) $alertString .= 'Unsupported File is Choosen for Drivers License Back \n';}
  	else {
  	
  		$size=filesize($_FILES['driverLicenseBack']['tmp_name']);
@@ -119,7 +137,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Car Registration Page 1
 	$extension = strtolower(getExtension(stripslashes($_FILES['CarRegistration1']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Car Registration Page 1 \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbcarRegistration1) ) $alertString .= 'Unsupported File is Choosen for Car Registration Page 1 \n';}
  	else {
  	
  		$size=filesize($_FILES['CarRegistration1']['tmp_name']);
@@ -136,7 +155,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Car Registration Page 2
 	$extension = strtolower(getExtension(stripslashes($_FILES['CarRegistration2']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Car Registration Page 2 \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbcarRegistration2) ) $alertString .= 'Unsupported File is Choosen for Car Registration Page 2 \n';}
  	else {
  	
  		$size=filesize($_FILES['CarRegistration2']['tmp_name']);
@@ -153,7 +173,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Student ID Card Front
 	$extension = strtolower(getExtension(stripslashes($_FILES['stdIDCardFront']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Student ID Card Front \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbstdIDCardFront) ) $alertString .= 'Unsupported File is Choosen for Student ID Card Front \n';}
  	else {
  	
  		$size=filesize($_FILES['stdIDCardFront']['tmp_name']);
@@ -170,7 +191,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Student ID Card Back
 	$extension = strtolower(getExtension(stripslashes($_FILES['stdIDCardBack']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Student ID Card Back \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbstdIDCardBack) ) $alertString .= 'Unsupported File is Choosen for Student ID Card Back \n';}
  	else {
  	
  		$size=filesize($_FILES['stdIDCardBack']['tmp_name']);
@@ -188,7 +210,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Payment Document
 	$extension = strtolower(getExtension(stripslashes($_FILES['PaymentDocument']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Payment Document \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbpaymnetDocument) ) $alertString .= 'Unsupported File is Choosen for Payment Document \n';}
  	else {
  	
  		$size=filesize($_FILES['PaymentDocument']['tmp_name']);
@@ -207,8 +230,10 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 }
 else { // No Data Before Create New
-  	//$sql =mysqli_query($con, "INSERT INTO HGS_Application VALUES ('$id', '$_POST[brand]','$_POST[model]','$_POST[color]','$_POST[plate]' , null, null) ");
+	$sql =mysqli_query($con, "INSERT INTO HGS_Application VALUES ('$id', '','','','' ,null ,null ,null ,null ,null ,null ,null,0) ");
 }
+
+ if (strlen($alertString) == 0) {$alertString = "All Fields Are Updated";}
   
  echo("<script type=\"text/javascript\" > alert('$alertString'); </script>");
  echo("<meta http-equiv='refresh' content='1'>"); // Refresh Page

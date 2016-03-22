@@ -9,6 +9,15 @@ if(!isset($_SESSION["sess_username"])){
 	$id = $_SESSION['sess_systemid'];
 	
 	$con = mysqli_connect("localhost","hgs-project","w28mkH9H","hgs_project") or die(mysqli_error());
+	
+	//Start of the application lock
+	$result = mysqli_query($con,"SELECT * FROM HGS_Application WHERE Sys_ID='$id'");
+	$row2=mysqli_fetch_assoc($result);
+	$DBAPPLICATIONSTATUS = $row2['ApplicationStatus'];
+	if ($DBAPPLICATIONSTATUS == 1) header("location:student4.php");
+	//End of the application lock
+		
+	
 	$result = mysqli_query($con,"SELECT * FROM HGS_Application WHERE Sys_ID='$id'");
 		
 	$row=mysqli_fetch_assoc($result);
@@ -71,7 +80,7 @@ if ($num_rows > 0) { // There Exist Data Before
 
 }
 else { // No Data Before Create New
-  	$sql =mysqli_query($con, "INSERT INTO HGS_Application VALUES ('$id', '$_POST[brand]','$_POST[model]','$_POST[color]','$_POST[plate]' ,null ,null ,null ,null ,null ,null ,null) ");
+  	$sql =mysqli_query($con, "INSERT INTO HGS_Application VALUES ('$id', '$_POST[brand]','$_POST[model]','$_POST[color]','$_POST[plate]' ,null ,null ,null ,null ,null ,null ,null,0) ");
 }
    
 echo " added succesfully";
