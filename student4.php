@@ -94,7 +94,7 @@
 <p> Payment Document :  <?=isItEmpty($dbpaymnetDocument);?> </p>
 
 
-<p> SUBMIT YOUT APPLICATION IF INFORMATIONS ABOVE IS CORRET! </p>
+<p> SUBMIT YOUT APPLICATION IF INFORMATIONS ABOVE IS CORRECT! </p>
 
 <input type="submit" name="submit" value="submit" />
 <br/>
