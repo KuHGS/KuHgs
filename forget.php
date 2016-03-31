@@ -5,14 +5,16 @@
 </head>
 <body>
 
-<h3>Sign Up Form</h3>
+<h3>Forget Password</h3>
 <form action="" method="POST">
 Email: <input type="text" name="email"><br />
 <br />
-<input type="submit" value="Sign Up" name="submit" />
+<input type="submit" value="Send New Password" name="submit" />
 </form>
 
 <a href="login.php">Log In Page </a>
+<br/>
+<a href="signup.php">Sign Up Page </a>
  <br/>
 
 
@@ -46,22 +48,24 @@ if(!empty($_POST['email'])) {
 	
 	if(strlen($dbStdEmail) != 0){
 	
-		echo("$email is already registered! ");
-	
-	} else {
-  	
-  	$to      = $_POST['email'];
+	$to      = $_POST['email'];
 	$subject = 'Login Password';
-	$message = "Username: " . $username . "\r\n" . "Password: ". $randomString;
+	$message = "Your password has been reset. These are your new login details. \r\nUsername: " . $username . "\r\n" . "Password: ". $randomString;
 	$headers = 'From: noreply@hgs-project.ku.edu.tr' . "\r\n" .
     'Reply-To: noreply@hgs-project.ku.edu.tr' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 
 	mail($to, $subject, $message, $headers);
 
-    $sql =mysqli_query($con, "INSERT INTO `Students` (`System_ID`, `School_ID`, `StudentName`, `StudentSurname`, `UserName`, `Password`, `email`, `PhoneNo`, `HGS_Number`) VALUES ('', '', '', '', '$username', '$randomString', '$email', NULL, '0')");
+     $sql =mysqli_query($con, "UPDATE `Students` SET `Password` = '$randomString' WHERE `email` = '$dbStdEmail'");
+     
+	echo("An email containing your new password has been sent to $email. Please check your mail for your login information! ");
 	
-	echo("An email containing your password has been sent to $email. Please check your mail for your login information! ");
+	} else {
+  	
+  	echo("No recorded email has been found for $email. Please check your mail address or use sign up page if this is your first time! ");
+	
+  	
 	} 
 	}
 	else 

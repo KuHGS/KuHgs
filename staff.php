@@ -52,7 +52,7 @@ if(!isset($_SESSION["sess_user"])){
     
     if (isset($_POST['submit'])) {
         
-        echo '<br />The ' . $_POST['submit'] . ' button was pressed<br />';
+        //echo '<br />The ' . $_POST['submit'] . ' button was pressed<br />';
 
         $id = $_POST['submit'];
         session_start();
@@ -61,7 +61,7 @@ if(!isset($_SESSION["sess_user"])){
         $r3=mysqli_fetch_assoc($q3);
         $_SESSION['sess_username']= $r3['UserName'];
         $_SESSION['sess_systemid']= $id;
-        header("Location: student4.php");
+        header("Location: ApplicationDetails.php");
         
     }
     

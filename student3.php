@@ -15,18 +15,26 @@ if(!isset($_SESSION["sess_username"])){
 	
 	//Start of the application lock
 	$result = mysqli_query($con,"SELECT * FROM HGS_Application WHERE Sys_ID='$id'");
-	$row2=mysqli_fetch_assoc($result);
-	$DBAPPLICATIONSTATUS = $row2['ApplicationStatus'];
-	if ($DBAPPLICATIONSTATUS == 1) header("location:student4.php");
+	$row=mysqli_fetch_assoc($result);
+	$DBAPPLICATIONSTATUS = $row['ApplicationStatus'];
+	if ($DBAPPLICATIONSTATUS != 0) header("location:studentSummary.php");
 	//End of the application lock
 	
-	$result = mysqli_query($con,"SELECT * FROM HGS_Application WHERE Sys_ID='$id'");
-		
-	$row=mysqli_fetch_assoc($result);
 	
-	$dbDriversLicenseFront = $row['Drivers_License_Front'];
+	$dbdriverlicenseFront = $row['Drivers_License_Front'];
+	$dbdriverlicenseBack = $row['Drivers_License_Back'];
+	$dbcarRegistration1 = $row['Car_Registration_P1'];
+	$dbcarRegistration2 = $row['Car_Registration_P2'];	
+	$dbstdIDCardFront = $row['std_ID_Card_Front'];
+	$dbstdIDCardBack = $row['std_ID_Card_Back'];	
+	$dbpaymnetDocument = $row['Payment_Document'];
 	
-	
+	function isEmpty($variable) {
+	if (strlen($variable) == 0)
+	return true;
+	else 
+	return false;
+	}
  
 ?>
 
@@ -44,7 +52,7 @@ if(!isset($_SESSION["sess_username"])){
 
 <form action="" method="post" enctype="multipart/form-data">
 
-<h3> <i> Maximum Allowed File Size is 500 KB! </i> </h3>
+<h3> <i> Maximum Allowed File Size is <?= MAX_FILE_SIZE;?> KB! </i> </h3>
 
 <p>Drivers License Front:</p> 
 <?=showImage($id,"Drivers_License_Front");?>
@@ -93,7 +101,8 @@ if ($num_rows > 0) { // There Exist Data Before
 
 	//Drivers License Front
 	$extension = strtolower(getExtension(stripslashes($_FILES['driverLicenseFront']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Drivers License Front \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbdriverlicenseFront) ) $alertString .= 'Unsupported or No File is Choosen for Drivers License Front \n'; }
  	else {
  	
  		$size=filesize($_FILES['driverLicenseFront']['tmp_name']);
@@ -110,7 +119,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Drivers License Back
 	$extension = strtolower(getExtension(stripslashes($_FILES['driverLicenseBack']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Drivers License Back \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbdriverlicenseBack) ) $alertString .= 'Unsupported or No File is Choosen for Drivers License Back \n';}
  	else {
  	
  		$size=filesize($_FILES['driverLicenseBack']['tmp_name']);
@@ -127,7 +137,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Car Registration Page 1
 	$extension = strtolower(getExtension(stripslashes($_FILES['CarRegistration1']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Car Registration Page 1 \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbcarRegistration1) ) $alertString .= 'Unsupported or No File is Choosen for Car Registration Page 1 \n';}
  	else {
  	
  		$size=filesize($_FILES['CarRegistration1']['tmp_name']);
@@ -144,7 +155,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Car Registration Page 2
 	$extension = strtolower(getExtension(stripslashes($_FILES['CarRegistration2']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Car Registration Page 2 \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbcarRegistration2) ) $alertString .= 'Unsupported or No File is Choosen for Car Registration Page 2 \n';}
  	else {
  	
  		$size=filesize($_FILES['CarRegistration2']['tmp_name']);
@@ -161,7 +173,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Student ID Card Front
 	$extension = strtolower(getExtension(stripslashes($_FILES['stdIDCardFront']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Student ID Card Front \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbstdIDCardFront) ) $alertString .= 'Unsupported or No File is Choosen for Student ID Card Front \n';}
  	else {
  	
  		$size=filesize($_FILES['stdIDCardFront']['tmp_name']);
@@ -178,7 +191,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Student ID Card Back
 	$extension = strtolower(getExtension(stripslashes($_FILES['stdIDCardBack']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Student ID Card Back \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbstdIDCardBack) ) $alertString .= 'Unsupported or No File is Choosen for Student ID Card Back \n';}
  	else {
  	
  		$size=filesize($_FILES['stdIDCardBack']['tmp_name']);
@@ -196,7 +210,8 @@ if ($num_rows > 0) { // There Exist Data Before
 	
 	//Payment Document
 	$extension = strtolower(getExtension(stripslashes($_FILES['PaymentDocument']['name']))); 
- 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { $alertString .= 'Unsupported or No File is Choosen for Payment Document \n';}
+ 	if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) { 
+ 		if ( isEmpty($dbpaymnetDocument) ) $alertString .= 'Unsupported or No File is Choosen for Payment Document \n';}
  	else {
  	
  		$size=filesize($_FILES['PaymentDocument']['tmp_name']);
@@ -218,7 +233,7 @@ else { // No Data Before Create New
 	$sql =mysqli_query($con, "INSERT INTO HGS_Application VALUES ('$id', '','','','' ,null ,null ,null ,null ,null ,null ,null,0) ");
 }
 
- if (strlen($alertString) == 0) {$alertString = "All Fields Are Updated";}
+ if (strlen($alertString) == 0) {$alertString = "Update Completed";}
   
  echo("<script type=\"text/javascript\" > alert('$alertString'); </script>");
  echo("<meta http-equiv='refresh' content='1'>"); // Refresh Page
@@ -230,8 +245,9 @@ function showImage($id,$rowName) {
 	$result = mysqli_query($con,"SELECT * FROM HGS_Application WHERE `Sys_ID` = '$id'");
 	$row=mysqli_fetch_assoc($result);
 	$dbItem = $row[$rowName];
-			    
-	echo '<img height="300" width="300" src="data:image;base64,'.$dbItem.' "> <br/>';
+		
+	if ( isEmpty($dbItem) ) { echo '<img height="300" width="300" src="No_Image_Available.png"> <br/>'; }		    
+	else { echo '<img height="300" width="300" src="data:image;base64,'.$dbItem.' "> <br/>'; };
                 
 	mysqli_close($con);  
 }

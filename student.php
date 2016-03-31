@@ -15,7 +15,7 @@ if(!isset($_SESSION["sess_username"])){
 	$result = mysqli_query($con,"SELECT * FROM HGS_Application WHERE Sys_ID='$id'");
 	$row2=mysqli_fetch_assoc($result);
 	$DBAPPLICATIONSTATUS = $row2['ApplicationStatus'];
-	if ($DBAPPLICATIONSTATUS == 1) header("location:student4.php");
+	if ($DBAPPLICATIONSTATUS != 0) header("location:studentSummary.php");
 	//End of the application lock
 
 	$query = mysqli_query($con,"SELECT * FROM Students WHERE UserName='$dbusername'");
