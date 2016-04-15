@@ -2,18 +2,34 @@
 <html>
 <head>
 <title>Sign Up</title>
+<link href="style/main.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-<h3>Sign Up Form</h3>
-<form action="" method="POST">
-Email: <input type="text" name="email"><br />
-<br />
-<input type="submit" value="Sign Up" name="submit" />
-</form>
+<div id="center">
+<div id="login-form">
 
-<a href="login.php">Log In Page </a>
- <br/>
+<br />
+<img src="/style/images/ku_logo.png" alt="Koc University">
+<p>&nbsp;</p>
+
+<h3>Sign Up</h3>
+<form action="" method="POST">
+<div class="login-form-row"> <p> 📨 </p> <input placeholder="Email" type="text" name="email"><br/></div>
+<p>&nbsp;</p>
+<input type="submit" value="Sign Up" name="submit" id="login-form-submit-button"/>
+</form>
+<p>&nbsp;</p>
+<a class="login-form-link" href="login.php">Go To <br/>Log In Page </a>
+
+<a class="login-form-link"href="forget.php">Go To <br/>Forget Password</a>
+
+<p>&nbsp;</p>
+
+
+</div>
+</div>
 
 
 <?php
@@ -46,7 +62,7 @@ if(!empty($_POST['email'])) {
 	
 	if(strlen($dbStdEmail) != 0){
 	
-		echo("$email is already registered! ");
+	echo("<script type=\"text/javascript\" > alert('$email is already registered! '); </script>");
 	
 	} else {
   	
@@ -61,22 +77,25 @@ if(!empty($_POST['email'])) {
 
     $sql =mysqli_query($con, "INSERT INTO `Students` (`System_ID`, `School_ID`, `StudentName`, `StudentSurname`, `UserName`, `Password`, `email`, `PhoneNo`, `HGS_Number`) VALUES ('', '', '', '', '$username', '$randomString', '$email', NULL, '0')");
 	
-	echo("An email containing your password has been sent to $email. Please check your mail for your login information! ");
+	echo("<script type=\"text/javascript\" > alert('An email containing your password has been sent to $email. Please check your mail for your login information! '); </script>");
+
 	} 
 	}
 	else 
 	{
-  		echo("$email is not a valid koç university email address. Please try with your koç university email address! ");
+	echo("<script type=\"text/javascript\" > alert('$email is not a valid koç university email address. Please try with your koç university email address! '); </script>");
 	}
 
 
 	} else {
-  		echo("$email is not a valid email address. Please try again! ");
+	echo("<script type=\"text/javascript\" > alert('$email is not a valid email address. Please try again! '); </script>");
+
 	}
 	
 	
 } else {
-	echo "Please Enter Your Email Address!";
+echo("<script type=\"text/javascript\" > alert('Please Enter Your Email Address! '); </script>");
+
 }
 }
 

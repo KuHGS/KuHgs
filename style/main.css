@@ -1,0 +1,191 @@
+body {
+    background: url(http://hgs-project.ku.edu.tr/style/images/background.jpg) no-repeat center center fixed;
+	background-size: cover;	
+}
+
+#login-form {
+	background: url(http://hgs-project.ku.edu.tr/style/images/transparent.png) repeat center center fixed;
+	background-size: cover;
+	text-align: center;
+	position: relative;
+	margin: 0 auto;
+	-webkit-box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.75);
+	-moz-box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.75);
+	box-shadow: 0px 0px 10px rgba(1, 1, 1, 0.75);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#login-form img{
+	 max-width: 100%
+}
+
+#center {
+	text-align: center;
+	position: relative;
+	margin: auto;
+	padding: 25%;
+	padding-bottom: 0%;
+	padding-top: 5%;	
+}
+
+.login-form-row input {
+	border: 1px solid #b0b9c2;
+	text-align: center;
+    font-weight: bold;
+	width: 40%;
+	height: 30px;
+	font-size:18px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-form-row input:focus {
+	border: 1px solid #900;
+    outline: none;
+}
+
+.login-form-row select {
+	border: 1px solid #b0b9c2;
+	text-align: center;
+    font-weight: bold;
+	width: 40%;
+	height: 30px;
+	font-size:18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-form-row select:focus {
+	border: 1px solid #900;
+    outline: none;
+}
+
+.login-form-row p {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size:25px;
+}
+
+#login-form-submit-button {
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+	background: #991b1e;
+	border: 2px solid #991b1e;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 700;
+	margin: 0;
+	padding: 10px 20px;
+	position: relative;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	width: 60%;
+    height: 40px;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#login-form-submit-button:hover {
+	background-color: #b01c1e;
+	border-color: #fff;
+	color: #fff;
+	text-decoration: none
+}
+
+.login-form-link {
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+	background: #6d1214;
+	border: 2px solid #6d1214;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	margin: 0;
+	padding: 5px;
+	position: relative;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	width: 30%;
+    height: 30px;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-form-link:hover {
+	background-color: #841517;
+	border-color: #fff;
+	color: #fff;
+	text-decoration: none
+}
+
+.login-form-link-2 {
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+	background: #6d1214;
+	border: 2px solid #6d1214;
+	color: #fff;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: 700;
+	margin: 0;
+	padding: 5px;
+	position: relative;
+	text-decoration: none;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	width: 70%;
+    height: 30px;
+    text-transform: uppercase;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-form-link-2:hover {
+	background-color: #841517;
+	border-color: #fff;
+	color: #fff;
+	text-decoration: none
+}
+
+
+@media screen and (max-width: 800px) {
+.login-form-link-2 {
+	width: 85%;
+	}
+	
+.login-form-link {
+	width: 40%;
+	}
+	
+#login-form-submit-button {
+	width: 85%;
+	}
+.login-form-row input {
+	width: 85%;
+	}
+
+.login-form-row select {
+	width: 85%;
+	}
+#center {
+	padding: 3%;
+	padding-bottom: 0%;
+	padding-top: 1%;
+	}
+}

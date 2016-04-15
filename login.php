@@ -2,22 +2,43 @@
 <html>
 <head>
 <title>Login</title>
+<meta charset="utf-8">
+<link href="style/main.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-<h3>Login Form</h3>
-<form action="" method="POST">
-Username: <input type="text" name="uname"><br />
-Password: <input type="password" name="passw"><br />	
-Log in as: <select name="loginType">
+<div id="center">
+
+<div id="login-form">
+
+<br />
+<img src="/style/images/ku_logo.png" alt="Koc University">
+<br />
+
+<h3>Log In</h3>
+
+<form action="" method="POST" id="login-form-fields">
+
+<div class="login-form-row"> <p>👤</p><input placeholder="Username" type="text" name="uname"><br/></div>
+<div class="login-form-row"> <p>🔒</p><input placeholder="Password" type="password" name="passw"><br/></div>
+
+<div class="login-form-row"> <p>🎓/👮</p> <select name="loginType"> </div>
 <option value="1">Student</option> 
 <option value="2">Staff</option> 
 </select>
-<br />
-<input type="submit" value="Login" name="submit" />
+
+<p>&nbsp;</p>
+<input type="submit" value="Login" name="submit" id="login-form-submit-button"/>
 </form>
 
-<a href="signup.php">Sign Up</a>
+<p>&nbsp;</p>
+<a class="login-form-link" href="signup.php">Sign </br> Up</a>
+<a class="login-form-link" href="forget.php">Forget </br> Password</a>
+<p>&nbsp;</p>
+
+</div>
+</div>
 
 
 <?php
@@ -31,15 +52,14 @@ if(!empty($_POST['uname']) && !empty($_POST['passw'])) {
  if($type == 1){
 
 
-	$con = mysql_connect("localhost","hgs-project","w28mkH9H") or die(mysql_error());
-    mysql_select_db("hgs_project", $con)or die("cannot select DB");
+    $con = mysqli_connect("localhost","hgs-project","w28mkH9H","hgs_project") or die(mysqli_error());
     
   
-	$query=mysql_query("SELECT * FROM Students WHERE UserName='$user' AND Password='$pass' ");
-	$numrows=mysql_num_rows($query);
+	$query=mysqli_query($con,"SELECT * FROM Students WHERE UserName='$user' AND Password='$pass' ");
+	$numrows=mysqli_num_rows($query);
 	if($numrows!=0)
 	{
-	while($row=mysql_fetch_assoc($query))
+	while($row=mysqli_fetch_assoc($query))
 	{
 	$dbusername=$row['UserName'];
 	$dbpassword=$row['Password'];
@@ -61,21 +81,21 @@ if(!empty($_POST['uname']) && !empty($_POST['passw'])) {
 	header("Location: student.php");
 	}
 	} else {
-	echo "Invalid username or password for Student!";
+	echo("<script type=\"text/javascript\" > alert('Invalid username or password for Student!'); </script>");
+
 	}
 	} 
 	
 	else {
 	
 	
-	$con2 = mysql_connect("localhost","hgs-project","w28mkH9H") or die(mysql_error());
-    mysql_select_db("hgs_project", $con2)or die("cannot select DB");
+	$con2 = mysqli_connect("localhost","hgs-project","w28mkH9H","hgs_project") or die(mysqli_error());
     
-	$query2=mysql_query("SELECT * FROM Security_Staff WHERE UserName='$user' AND Password='$pass'");
-	$numrows2=mysql_num_rows($query2);
+	$query2=mysqli_query($con2,"SELECT * FROM Security_Staff WHERE UserName='$user' AND Password='$pass'");
+	$numrows2=mysqli_num_rows($query2);
 	if($numrows2!=0)
 	{
-	while($row2=mysql_fetch_assoc($query2))
+	while($row2=mysqli_fetch_assoc($query2))
 	{
 	$dbusername2=$row2['UserName'];
 	$dbpassword2=$row2['Password'];
@@ -93,12 +113,14 @@ if(!empty($_POST['uname']) && !empty($_POST['passw'])) {
 	header("Location: staff.php");
 	}
 	} else {
-	echo "Invalid username or password for Staff!";
+	echo("<script type=\"text/javascript\" > alert('Invalid username or password for Staff!'); </script>");
+
 	}
 	}
 
 } else {
-	echo "All fields are required!";
+	echo("<script type=\"text/javascript\" > alert('All fields are required!'); </script>");
+
 }
 }
 
