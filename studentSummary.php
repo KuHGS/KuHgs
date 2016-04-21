@@ -48,9 +48,9 @@
 
     function isItEmpty($variable) {
 	if (strlen($variable) == 0)
-	echo '<img src="cross.png"> <br/>';
+	echo '<img src="style/images/cross.png"> <br/>';
 	else 
-	echo '<img src="tick.png"> <br/>';
+	echo '<img src="style/images/tick.png"> <br/>';
 	}
 	
 	function isCompatible($variable) {
@@ -62,9 +62,9 @@
 	
 	function isApproved($variable) {
 	if ($variable == 1)
-	echo 'Your Application is Locked and Pending Approval';
+	echo ' <p id="pending" > Your Application is Locked and Pending Approval </p>';
 	if ($variable == 2) 
-	echo 'Your Application is Approved';
+	echo '<p id="approve" > Your Application is Approved </p>';
 	}
     
     ?>
@@ -73,32 +73,112 @@
 <html>
 <head>
 <title>Welcome, <?=$_SESSION['sess_username'];?>.</title>
+<meta charset="utf-8">
+<link href="style/student.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-<h1>Welcome, <?=$_SESSION['sess_username'];?> ! </h1>
-<p align="right" ><a href="logout.php">Logout</a></p>
+<div id="header">
+
+<div id="logout"> <a id="logout-button" href="logout.php">Logout</a> </div>
+<div id="logo"> <img src="/style/images/ku_logo_2.png" alt="Koc University"> </div>
+<div id="title"> <h1>Welcome, <?=$_SESSION['sess_username'];?>. </h1> </div>
+
+</div>
+
+<div id="titlebar"> &nbsp; </div>
+
+<div id="center">
+<div id="information-form">
 
 <form action="" method="post">
 
-<p> Information Confirmation </p>
+<h2> Information Confirmation </h2>
+
+<div class="information-form-row">
 <p> Name : <?=$dbName?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Surname : <?=$dbSurname?> </p>
+</div>
+
+<div class="information-form-row">
 <p> ID: <?=$dbStdID?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Mail : <?=$dbStdEmail?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Phone Number : <?=$dbPhoneNo?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Car Brand : <?=$dbbrand?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Car Model : <?=$dbmodel?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Car Color : <?=$dbcolor?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Car Plate : <?=$dbplate?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Drivers License Front :  <?=isItEmpty($dbdriverlicenseFront);?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Drivers License Back : <?=isItEmpty($dbdriverlicenseBack);?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Car Registration Page 1 :  <?=isItEmpty($dbcarRegistration1);?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Car Registration Page 2 : <?=isItEmpty($dbcarRegistration2);?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Student ID Card Front :  <?=isItEmpty($dbstdIDCardFront);?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Student ID Card Back : <?=isItEmpty($dbstdIDCardBack);?> </p>
+</div>
+
+<div class="information-form-row">
 <p> Payment Document :  <?=isItEmpty($dbpaymnetDocument);?> </p>
-<p> Application Status : <?=isApproved($DBAPPLICATIONSTATUS);?> </p>
+</div>
+
+<div class="information-form-row"><p>&nbsp;</p></div>
+
+<div class="information-form-row">
+<p> Application Status : </p> 
+<?=isApproved($DBAPPLICATIONSTATUS);?>
+</div>
+
+<div class="information-form-row">
+<p>&nbsp;</p>
+</div>
+
+</div>
+</div>
+
+<div id="titlebar"> &nbsp; </div>
+
+<div class="information-form-row">
+<p>&nbsp;</p>
+</div>
 
 </body>
 </html>

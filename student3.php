@@ -41,53 +41,120 @@ if(!isset($_SESSION["sess_username"])){
 <!doctype html>
 <html>
 <head>
-<title>Welcome, <?=$_SESSION['sess_username'];?>. <?=$_SESSION['sess_systemid'];?></title>
+<title>Welcome, <?=$_SESSION['sess_username'];?>.</title>
+<meta charset="utf-8">
+<link href="style/student.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-<h1>Welcome, <?=$_SESSION['sess_username'];?>.</h1>
-<p align="right" ><a href="logout.php">Logout</a></p>
+<div id="header">
 
-<h2 > 1 2 <i> 3 </i> 4</h2>
+<div id="logout"> <a id="logout-button" href="logout.php">Logout</a> </div>
+<div id="logo"> <img src="/style/images/ku_logo_2.png" alt="Koc University"> </div>
+<div id="title"> <h1>Welcome, <?=$_SESSION['sess_username'];?>. </h1> </div>
+
+</div>
+	
+<div id="steps">
+
+<div class="step-passed"><p>1</p></div>
+<div class="step-passed"><p>2</p> </div>
+<div class="step-active"><p>3</p> </div>
+<div class="step-inactive"><p>4</p> </div>
+
+</div>
+
+<div class="information-form-row">
+<p>&nbsp;</p>
+</div>
+
+<div id="titlebar"> &nbsp; </div>
+
+<div id="center">
+<div id="information-form">
 
 <form action="" method="post" enctype="multipart/form-data">
 
 <h3> <i> Maximum Allowed File Size is <?= MAX_FILE_SIZE;?> KB! </i> </h3>
 
+<div class="information-form-row">
 <p>Drivers License Front:</p> 
 <?=showImage($id,"Drivers_License_Front");?>
 <input type="file" name="driverLicenseFront" />
+</div>
 
+<div class="information-form-row"><p>&nbsp;</p></div>
+
+<div class="information-form-row">
 <p>Drivers License Back:</p> 
 <?=showImage($id,"Drivers_License_Back");?>
 <input type="file" name="driverLicenseBack" />
+</div>
 
+<div class="information-form-row"><p>&nbsp;</p></div>
+
+<div class="information-form-row">
 <p>Car Registration Page 1:</p> 
 <?=showImage($id,"Car_Registration_P1");?>
 <input type="file" name="CarRegistration1" />
+</div>
 
+<div class="information-form-row"><p>&nbsp;</p></div>
+
+<div class="information-form-row">
 <p>Car Registration Page 2:</p> 
 <?=showImage($id,"Car_Registration_P2");?>
 <input type="file" name="CarRegistration2" />
+</div>
 
+<div class="information-form-row"><p>&nbsp;</p></div>
+
+<div class="information-form-row">
 <p>Student ID Card Front:</p> 
 <?=showImage($id,"std_ID_Card_Front");?>
 <input type="file" name="stdIDCardFront" />
+</div>
 
+<div class="information-form-row"><p>&nbsp;</p></div>
+
+<div class="information-form-row">
 <p>Student ID Card Back:</p> 
 <?=showImage($id,"std_ID_Card_Back");?>
 <input type="file" name="stdIDCardBack" />
+</div>
 
+<div class="information-form-row"><p>&nbsp;</p></div>
+
+<div class="information-form-row">
 <p>Payment Document:</p> 
 <?=showImage($id,"Payment_Document");?>
 <input type="file" name="PaymentDocument" />
+</div>
 
+<div class="information-form-row"><p>&nbsp;</p></div>
 
-<input type="submit" name="submit" value="submit" />
+<input id="information-form-submit-button" type="submit" name="submit" value="submit" />
 </form>
 
-<a href="student2.php">Previous Page: Car Information Page | </a>
-<a href="student4.php">Next Page: Confirmation Page</a>
+
+<div class="information-form-row">
+<p>&nbsp;</p>
+</div>
+
+</div>
+</div>
+
+
+<div id="titlebar"> &nbsp; </div>
+
+<div id="center-2">
+<div class="information-form-row"><p>&nbsp;</p></div>
+<div id="nav-buttons">
+<a href="student2.php" id="information-form-prev-button" >  Previous Page:</br> Car Information Page  </a>
+<a href="student4.php" id="information-form-next-button" >   Next Page:</br> Confirmation Page  </a>
+</div>
+</div>
 
 
 <?php
@@ -246,7 +313,7 @@ function showImage($id,$rowName) {
 	$row=mysqli_fetch_assoc($result);
 	$dbItem = $row[$rowName];
 		
-	if ( isEmpty($dbItem) ) { echo '<img height="300" width="300" src="No_Image_Available.png"> <br/>'; }		    
+	if ( isEmpty($dbItem) ) { echo '<img height="300" width="300" src="style/images/No_Image_Available.png"> <br/>'; }		    
 	else { echo '<img height="300" width="300" src="data:image;base64,'.$dbItem.' "> <br/>'; };
                 
 	mysqli_close($con);  

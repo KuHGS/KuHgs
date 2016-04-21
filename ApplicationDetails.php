@@ -52,7 +52,7 @@
 	$row=mysqli_fetch_assoc($result);
 	$dbItem = $row[$rowName];
 		
-	if ( isEmpty($dbItem) ) { echo '<img height="300" width="300" src="No_Image_Available.png"> <br/>'; }		    
+	if ( isEmpty($dbItem) ) { echo '<img height="300" width="300" src="style/images/No_Image_Available.png"> <br/>'; }		    
 	else { echo '<img height="300" width="300" src="data:image;base64,'.$dbItem.' "> <br/>'; };
                 
 	mysqli_close($con);  
@@ -78,18 +78,38 @@
 <html>
 <head>
 <title>Welcome, <?=$dbadminusername;?>.</title>
+<meta charset="utf-8">
+<link href="style/staff.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-<h1>Welcome, <?=$dbadminusername;?> ! </h1>
-<p align="right" ><a href="logout.php">Logout</a></p>
-<p ><a href="staff.php">See All Applications</a></p>
+<div id="header">
+
+<div id="logout"> <a id="logout-button" href="logout.php">Logout</a> </div>
+<div id="logo"> <img src="/style/images/ku_logo_2.png" alt="Koc University"> </div>
+<div id="title"> <h1>Welcome, <?=$dbadminusername;?>. </h1> </div>
+
+
+</div>
+
+<div id="titlebar"> &nbsp; </div>
+
+<div id="center">
+<div id="information-form">
+
+<a class="information-form-link-2" href="staff.php">See All <br /> Applications</a>
+
+<div class="information-form-row">
+<p>&nbsp;</p>
+</div>
 
 <form action="" method="post">
 
 <div id="myDIV" style="">
 
-<p> Information Confirmation </p>
+<h2> Information Confirmation </h2>
+
 <p> Name : <?=$dbName?> </p>
 <p> Surname : <?=$dbSurname?> </p>
 <p> ID: <?=$dbStdID?> </p>
@@ -108,8 +128,8 @@
 <p> Payment Document : <br/> <?=showImage($id,"Payment_Document");?> </p>
 
 
-<input type="submit" name="Approve" value="Approve" />
-<input type="submit"  name="Disapprove" value="Disapprove" />
+<input id="information-form-approve-button" type="submit" name="Approve" value="Approve" />
+<input id="information-form-decline-button" type="submit"  name="Disapprove" value="Disapprove" />
 <br/>
 </div>
 
@@ -126,7 +146,14 @@
 
 </form>
 
+<div class="information-form-row">
+<p>&nbsp;</p>
+</div>
 
+</div>
+</div>
+
+<div id="titlebar"> &nbsp; </div>
 
 <?php
 

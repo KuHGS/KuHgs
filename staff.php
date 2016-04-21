@@ -16,12 +16,25 @@ if(!isset($_SESSION["sess_user"])){
 <html>
 <head>
 <title>Welcome <?=$_SESSION['sess_user'];?>.</title>
+<meta charset="utf-8">
+<link href="style/staff.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-<h1>Welcome, <?=$_SESSION['sess_user'];?>. </h1>
-<p align="right" ><a href="logout.php">Logout</a></p>
+<div id="header">
 
+<div id="logout"> <a id="logout-button" href="logout.php">Logout</a> </div>
+<div id="logo"> <img src="/style/images/ku_logo_2.png" alt="Koc University"> </div>
+<div id="title"> <h1>Welcome, <?=$_SESSION['sess_user'];?>. </h1> </div>
+
+</div>
+
+
+<div id="titlebar"> &nbsp; </div>
+
+<div id="center">
+<div id="information-form">
 
 <table border="0" >
 <th> </th>
@@ -38,7 +51,7 @@ if(!isset($_SESSION["sess_user"])){
 <tr>
 <tr>
 <!-- <th> <a href="#"> <img src="arrow.png"> </a></th> -->
-<th> <form action="" method="post"> <input type="image" src="arrow.png" name="submit" value="<?php echo $log['Sys_ID'] ?>">
+<th> <form action="" method="post"> <input type="image" src="style/images/arrow.png" name="submit" value="<?php echo $log['Sys_ID'] ?>">
 <td><?php echo $r2['StudentName'] ?></td>
 <td><?php echo $r2['StudentSurname'] ?></td>
 <td><?php echo $log['License_Plate'] ?></td>
@@ -46,6 +59,14 @@ if(!isset($_SESSION["sess_user"])){
 <?php endwhile; ?>
 </table>
 
+<div class="information-form-row">
+<p>&nbsp;</p>
+</div>
+
+</div>
+</div>
+
+<div id="titlebar"> &nbsp; </div>
 
 
 <?php

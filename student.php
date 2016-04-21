@@ -34,31 +34,86 @@ if(!isset($_SESSION["sess_username"])){
 <!doctype html>
 <html>
 <head>
-<title>Welcome, <?=$_SESSION['sess_username'];?>. <?=$_SESSION['sess_systemid'];?></title>
+<title>Welcome, <?=$_SESSION['sess_username'];?>.</title>
+<meta charset="utf-8">
+<link href="style/student.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
-<h1>Welcome, <?=$_SESSION['sess_username'];?>. </h1>
-<p align="right" ><a href="logout.php">Logout</a></p>
+<div id="header">
+
+<div id="logout"> <a id="logout-button" href="logout.php">Logout</a> </div>
+<div id="logo"> <img src="/style/images/ku_logo_2.png" alt="Koc University"> </div>
+<div id="title"> <h1>Welcome, <?=$_SESSION['sess_username'];?>. </h1> </div>
+
+</div>
 	
-<h2> <i>1</i> 2 3 4</h2>
+<div id="steps">
+
+<div class="step-active"><p>1</p></div>
+<div class="step-inactive"><p>2</p> </div>
+<div class="step-inactive"><p>3</p> </div>
+<div class="step-inactive"><p>4</p> </div>
+
+</div>
+
+<div class="information-form-row">
+<p>&nbsp;</p>
+</div>
+
+<div id="titlebar"> &nbsp; </div>
+
+<div id="center">
+<div id="information-form">
 
 <form action="" method="post">
+<div class="information-form-row">
 <p>Name:</p> 
 <input placeholder="<?=$dbName?>" type="text" name="name"  size="25" maxlength="150" />
+</div>
+
+<div class="information-form-row">
 <p>Surname:</p>
 <input placeholder="<?=$dbSurname?>" type="text" name="surname" size="25" maxlength="255" />
+</div>
+
+<div class="information-form-row">
 <p>ID:</p>
 <input placeholder="<?=$dbStdID?>" type="text" name="id" size="25" maxlength="255" />
+</div>
+
+<div class="information-form-row">
 <p>Email:</p>
 <input placeholder="<?=$dbStdEmail?>" type="text" name="email"  size="25" maxlength="255" disabled/>
+</div>
+
+<div class="information-form-row">
 <p>Phone No:</p> 
 <input placeholder="<?=$dbPhoneNo?>" type="text" name="phoneno"  size="25" maxlength="11" />
+<p>&nbsp;</p>
+</div>
 
-<input type="submit" name="submit" value="submit" />
+<input id="information-form-submit-button" type="submit" name="submit" value="submit" />
 </form>
 
-<a href="student2.php">Next Page: Car Information Page</a>
+<div class="information-form-row">
+<p>&nbsp;</p>
+</div>
+
+</div>
+</div>
+
+<div id="titlebar"> &nbsp; </div>
+
+<div id="center-2">
+<div class="information-form-row"><p>&nbsp;</p></div>
+<div id="nav-buttons">
+<a href="student2.php" id="information-form-next-button" >   Next Page:</br> Car Information Page  </a>
+</div>
+</div>
+
+
 
 <?php
 
