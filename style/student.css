@@ -431,7 +431,7 @@ a:active {
 
 #pending {
 	text-shadow: 0 0 1px #000000;
-	color: #ffff00;
+	color: #990000;
 }
 
 @media screen and (max-width: 800px) {
