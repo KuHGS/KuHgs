@@ -68,7 +68,7 @@ if(!empty($_POST['email'])) {
   	
   	$to      = $_POST['email'];
 	$subject = 'Login Password';
-	$message = "Username: " . $username . "\r\n" . "Password: ". $randomString;
+	$message = "This is your login information for http://hgs-project.ku.edu.tr \r\n\r\n" . "Username: " . $username . "\r\n" . "Password: ". $randomString;
 	$headers = 'From: noreply@hgs-project.ku.edu.tr' . "\r\n" .
     'Reply-To: noreply@hgs-project.ku.edu.tr' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
